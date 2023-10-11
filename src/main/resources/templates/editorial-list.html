@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head"></head>
+    <body>
+        <!--NavBar-->
+        <nav th:replace="fragments/navbar"></nav>
+        <!--Hero-->
+        <div class="container-fluid">
+            <table class="container table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre de la editorial</th>
+                        <th scope="col">Estado de la editorial</th>
+                        <th scope="col" sec:authorize="hasRole('ADMIN')">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="editorial : ${editoriales}">
+                        <td th:text="${editorial.id}"></td>
+                        <td th:text="${editorial.nombre}"></td>
+                        <td th:text="${editorial.estado}"></td>                      
+                        <td><a sec:authorize="hasRole('ADMIN')" th:href="@{/editorial/modificar/__${editorial.id}__}">Modificar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--Botón volver-->
+            <section class=" text-center container">
+                <div class="row mt-3">
+                    <div class="divVolver">
+                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--Footer-->
+        <footer th:replace="fragments/footer"></footer>
+        <!-- JavaScript-->
+        <script th:replace="fragments/jsBootstrap"></script>
+    </body>
+</html>

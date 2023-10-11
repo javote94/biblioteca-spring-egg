@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="fragments/head"></head>
+    <body>
+        <!--NavBar-->
+        <nav th:replace="fragments/navbar"></nav>
+        <!--Hero-->
+        <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+            <div class="card-body">
+                <h5 class="card-title">Error!</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+        <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body">
+                <h5 class="card-title">Exito!</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+
+        <div class="container-fluid m-5 contenedor">
+            <form class="formulario" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+                <div class="form-group my-3">
+                    <h3 class="card-title">Registrate!</h3>
+                </div>
+                <div class="form-group my-3">
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" th:value="${nombre}">
+                </div>
+                <div class="form-group my-3">
+                    <input type="email" class="form-control" name="email" placeholder="Email" th:value="${email}">
+                </div>
+                <div class="form-group my-3">
+                    <input type="file" class="form-control" name="archivo">
+                </div>
+                <div class="form-group my-3">
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña" th:value="${password}">
+                </div>
+                <div class="form-group my-3">
+                    <input type="password" class="form-control" name="password2" placeholder="Repetir contraseña" th:value="${password2}">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3 botones">Registrarme</button>
+            </form>
+
+
+            <section class=" text-center container">
+                <div class="row mt-3">
+                    <div class="divVolver">
+                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--Footer-->
+        <footer th:replace="fragments/footer"></footer>
+        <!-- JavaScript-->
+        <script th:replace="fragments/jsBootstrap"></script>
+    </body>
+</html>

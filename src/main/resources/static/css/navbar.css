@@ -1,0 +1,27 @@
+.navBar{  /*clase ubicada en linea 1*/
+    background-color: #fff !important;
+}
+
+.containerImg{  /*clase ubicada en linea 2*/
+    width: 20%;
+}
+
+.logo{  /*clase ubicada en linea 4*/
+    width: 40%;
+    margin: auto;
+}
+
+.elementosNav{   /*clase ubicada en linea 15*/
+    /*display: flex;*/
+    width: 30%;
+    justify-content: space-around;
+    color: #37474f;
+    font-weight: 700;
+}
+
+.elementos{  /*clase ubicada en linea 17*/
+    margin-right: 50px;
+}
+
+
+

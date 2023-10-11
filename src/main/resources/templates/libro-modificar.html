@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head"></head>
+    <body>
+        <!--NavBar-->
+        <nav th:replace="fragments/navbar"></nav>
+        <!--Hero-->
+        <div class="container-fluid m-5 contenedor">
+            <!--Formulario-->
+            <form class="formulario" th:action="@{/libro/modificar/__${libro.isbn}__}" method="POST">
+                <input hidden th:value="${libro.isbn}" name="isbn">
+                    <div class="form-group my-3">
+                        <label class="mb-2">Titulo del libro</label>
+                        <input class="form-control" th:value="${libro.titulo}" type="text" name="titulo" placeholder="Titulo del libro">
+                    </div>
+                    <div class="form-group my-3">
+                        <label class="mb-2">Cantidad de ejemplares</label>
+                        <input class="form-control" th:value="${libro.ejemplares}" type="number" name="ejemplares" placeholder="Cantidad de ejemplares">
+                    </div>
+                    <div class="form-group my-3">
+                        <label>Nombre del autor</label>
+                        <select name="idAutor">
+                            <option th:each="autor : ${autores}"
+                                    th:value="${autor.id}"
+                                    th:text="${autor.nombre}"
+                                    th:selected="(${libro.autor.id} == *{autor.id})"
+                                    />
+                        </select>
+                    </div>
+                    <div class="form-group my-3">
+                        <label>Nombre de la editorial</label>
+                        <select name="idEditorial">
+                            <option th:each="editorial : ${editoriales}"
+                                    th:value="${editorial.id}"
+                                    th:text="${editorial.nombre}"
+                                    th:selected="(${libro.editorial.id} == *{editorial.id})"
+                                    />
+                        </select>
+                    </div>
+                    <div>
+                        <label>Estado del libro</label>
+                        <input th:checked="${libro.estado}" type="checkbox" name="estado">
+                    </div>
+                    <button class="btn btn-primary mt-3 botones" type="submit">Actualizar</button>  
+            </form>
+            <!--Mensaje al usuario-->
+            <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                <div class="card-body">
+                    <h5 class="card-title">Exito</h5>
+                    <p class="card-text" th:text="${exito}"></p>
+                </div>
+            </div>
+            <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
+                <div class="card-body">
+                    <h5 class="card-title">Error</h5>
+                    <p class="card-text" th:text="${error}"></p>
+                </div>
+            </div>
+            <!--Boton volver-->
+            <section class=" text-center container">
+                <div class="row mt-3">
+                    <div class="divVolver">
+                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--Footer-->
+        <footer th:replace="fragments/footer"></footer>
+        <!-- JavaScript-->
+        <script th:replace="fragments/jsBootstrap"></script>
+    </body>
+</html>

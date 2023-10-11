@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> <!--xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"-->
+    <head th:replace="fragments/head"></head>
+    <body>
+        <!--NavBar-->
+        <nav th:replace="fragments/navbar"></nav>
+        <!--Hero-->
+        <div class="container-fluid">
+            <table class="container table">
+                <thead>
+                    <tr>
+                        <th scope="col">Isbn</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Ejemplares</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Editorial</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col" sec:authorize="hasRole('ADMIN')">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="libro : ${libros}">
+                        <th scope="row" th:text="${libro.isbn}"></th>
+                        <td th:text="${libro.titulo}"></td>
+                        <td th:text="${libro.ejemplares}"></td>
+                        <td th:text="${libro.autor.nombre}"</td>
+                        <td th:text="${libro.editorial.nombre}"</td>
+                        <td th:text="${libro.estado}"></td>
+                        <td>
+                            <a sec:authorize="hasRole('ADMIN')" th:href="@{/libro/modificar/__${libro.isbn}__}"><i class="fas fa-feather-alt"></i>Modificar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--Botón volver-->
+            <section class=" text-center container">
+                <div class="row mt-3">
+                    <div class="divVolver">
+                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--Footer-->
+        <footer th:replace="fragments/footer"></footer>
+        <!-- JavaScript-->
+        <script th:replace="fragments/jsBootstrap"></script>
+    </body>
+</html>

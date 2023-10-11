@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="fragments/head"></head>
+    <body>
+        <!--NavBar-->
+        <nav th:replace="fragments/navbar"></nav>
+        <!--Hero-->
+        <div class="container-fluid m-5 contenedor">
+            <!--Formulario-->
+            <form class="formulario" action="/autor/registro" method="POST"> <!--th:action="@{/autor/registro/}"-->
+                <div class="form-group my-3">
+                    <label class="mb-2">Cargar Autor</label>
+                    <input class="form-control" type="text" name="nombre" placeholder="Nombre del autor">
+                </div>
+                <button class="btn btn-primary mt-3 botones" type="submit">Guardar</button>               
+            </form>
+            <!--Mensaje al usuario-->
+            <div th:if="${error != null}">
+                <div>
+                    <h5>Error</h5>
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
+            <div th:if="${exito != null}">
+                <div>
+                    <h5>Exito</h5>
+                    <p th:text="${exito}"></p>
+                </div>
+            </div>
+            <!--Botón volver-->
+            <section class=" text-center container">
+                <div class="row mt-3">
+                    <div class="divVolver">
+                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--Footer-->
+        <footer th:replace="fragments/footer"></footer>
+        <!-- JavaScript-->
+        <script th:replace="fragments/jsBootstrap"></script>
+    </body>
+</html>
